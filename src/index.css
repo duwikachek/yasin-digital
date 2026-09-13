@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Merriweather", "Georgia", serif;
+  
+  --color-stone-850: #23201d;
+  --color-stone-950: #1a1815;
+}
+
+@layer base {
+  body {
+    @apply bg-stone-50 text-stone-900 antialiased selection:bg-stone-200 selection:text-stone-900 dark:bg-stone-950 dark:text-stone-100 dark:selection:bg-emerald-900 dark:selection:text-emerald-100 transition-colors duration-300;
+  }
+}
+
+/* Typography styles for Arabic and clean layouts */
+.arabic-text {
+  font-family: "Amiri", "Traditional Arabic", serif;
+  line-height: 2.2;
+}

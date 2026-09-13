@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "title": "Pengantar Al-Fatihah",
+    "arabic": "اِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ وَاٰلِهِ وَصَحْبِهِ شَيْءٌ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+    "latin": "Ilaa hadhrotin nabiyyil mushthofaa shollalloohu 'alaihi wa sallama wa aalihii wa shohbihii syai-un lillaahi lahumul faatihah.",
+    "translation": "Dengan nama Allah yang maha pengasih lagi maha penyayang. Kepada yang terhormat Nabi Muhammad SAW, segenap keluarga, dan para sahabatnya. Bacaan Al-Fatihah ini kami tujukan kepada Allah dan pahalanya untuk mereka semua. Al-Fatihah:"
+  },
+  {
+    "id": 2,
+    "title": "Surat Al-Fatihah",
+    "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِيْنَ. الرَّحْمٰنِ الرَّحِيْمِ. مَالِكِ يَوْمِ الدِّيْنِ. اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُ. اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ. صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّآلِّيْنَ.",
+    "latin": "Bismillaahirrohmaanirrohiim. Alhamdulillaahi robbil 'aalamiin. Ar-rohmaanir-rohiim. Maaliki yaumiddiin. Iyyaaka na'budu wa iyyaaka nasta'iin. Ihdinash-shiroothol mustaqiim. Shirootholladziina an'amta 'alaihim ghoiril maghdhuubi 'alaihim wa ladldlooolliin.",
+    "translation": "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Segala puji bagi Allah, Tuhan semesta alam. Maha Pemurah lagi Maha Penyayang. Yang menguasai di Hari Pembalasan. Hanya Engkaulah yang kami sembah, dan hanya kepada Engkaulah kami meminta pertolongan. Tunjukilah kami jalan yang lurus. (Yaitu) Jalan orang-orang yang telah Engkau beri nikmat kepada mereka; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat."
+  },
+  {
+    "id": 3,
+    "title": "Surat Al-Ikhlas (3x)",
+    "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ هُوَ اللّٰهُ اَحَدٌ. اَللّٰهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُوْلَدْ. وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ",
+    "latin": "Bismillaahirrohmaanirrohiim. Qul huwalloohu ahad. Alloohush-shomad. Lam yalid wa lam yuulad. Wa lam yakul-lahuu kufuwan ahad.",
+    "translation": "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah: Dialah Allah, Yang Maha Esa. Allah adalah Tuhan yang bergantung kepada-Nya segala sesuatu. Dia tiada beranak dan tidak pula diperanakkan. Dan tidak ada seorangpun yang setara dengan Dia."
+  },
+  {
+    "id": 4,
+    "title": "Tahlil & Takbir",
+    "arabic": "لَا اِلٰهَ اِلَّا اللّٰهُ وَاللّٰهُ اَكْبَرُ",
+    "latin": "Laa ilaaha illalloohu walloohu akbar.",
+    "translation": "Tiada Tuhan selain Allah, dan Allah Maha Besar."
+  },
+  {
+    "id": 5,
+    "title": "Surat Al-Falaq",
+    "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ اَعُوْذُ بِرَبِّ الْفَلَقِ. مِنْ شَرِّ مَا خَلَقَ. وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَ. وَمِنْ شَرِّ النَّفّٰثٰتِ فِى الْعُقَدِ. وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",
+    "latin": "Bismillaahirrohmaanirrohiim. Qul a'uudzu birobbil falaq. Min syarri maa kholaq. Wa min syarri ghoosiqin idzaa waqob. Wa min syarrin-naffaatsaati fil 'uqod. Wa min syarri haasidin idzaa hasad.",
+    "translation": "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah: Aku berlindung kepada Tuhan Yang Menguasai subuh. Dari kejahatan makhluk-Nya. Dan dari kejahatan malam apabila telah gelap gulita. Dan dari kejahatan wanita-wanita tukang sihir yang menghembus pada buhul-buhul. Dan dari kejahatan pendengki bila ia dengki."
+  },
+  {
+    "id": 6,
+    "title": "Tahlil & Takbir",
+    "arabic": "لَا اِلٰهَ اِلَّا اللّٰهُ وَاللّٰهُ اَكْبَرُ",
+    "latin": "Laa ilaaha illalloohu walloohu akbar.",
+    "translation": "Tiada Tuhan selain Allah, dan Allah Maha Besar."
+  },
+  {
+    "id": 7,
+    "title": "Surat An-Nas",
+    "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ. قُلْ اَعُوْذُ بِرَبِّ النَّاسِ. مَلِكِ النَّاسِ. اِلٰهِ النَّاسِ. مِنْ شَرِّ الْوَسْوَاسِ ەۙ الْخَنَّاسِ. الَّذِيْ يُوَسْوِسُ فِيْ صُدُوْرِ النَّاسِ. مِنَ الْجِنَّةِ وَالنَّاسِ",
+    "latin": "Bismillaahirrohmaanirrohiim. Qul a'uudzu birobbin-naas. Malikin-naas. Ilaahin-naas. Min syarril waswaasil khonnaas. Alladzii yuwaswisu fii shuduurin-naas. Minal jinnati wan-naas.",
+    "translation": "Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang. Katakanlah: Aku berlindung kepada Tuhan (yang memelihara dan menguasai) manusia. Raja manusia. Sembahan manusia. Dari kejahatan (bisikan) syaitan yang biasa bersembunyi. Yang membisikkan (kejahatan) ke dalam dada manusia. Dari (golongan) jin dan manusia."
+  },
+  {
+    "id": 8,
+    "title": "Ayat Kursi",
+    "arabic": "اَللّٰهُ لَآ اِلٰهَ اِلَّا هُوَۚ اَلْحَيُّ الْقَيُّوْمُ ەۚ لَا تَأْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌۗ لَهٗ مَا فِى السَّمٰوٰتِ وَمَا فِى الْاَرْضِۗ مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖۗ يَعْلَمُ مَا بَيْنَ اَيْدِيْهِمْ وَمَا خَلْفَهُمْۚ وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَاۤءَۚ وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْاَرْضَۚ وَلَا يَـُٔوْدُهٗ حِفْظُهُمَاۚ وَهُوَ الْعَلِيُّ الْعَظِيْمُ",
+    "latin": "Alloohu laa ilaaha illaa huwal hayyul qoyyuum. Laa ta'khudzuhuu sinatuw-wa laa naum. Lahuu maa fis-samaawaati wa maa fil ardh. Man dzal-ladzii yasyfa'u 'indahuu illaa bi-idznih. Ya'lamu maa baina aidiihim wa maa kholfahum. Wa laa yuhiithuuna bisyai-im-min 'ilmihii illaa bimaa syaa-a. Wasi'a kursiyyuhus-samaawaati wal ardh. Wa laa ya-uuduhuu hifzhuhumaa wa huwal 'aliyyul 'azhiim.",
+    "translation": "Allah, tidak ada Tuhan (yang berhak disembah) melainkan Dia Yang Hidup kekal lagi terus menerus mengurus (makhluk-Nya); tidak mengantuk dan tidak tidur. Kepunyaan-Nya apa yang di langit dan di bumi. Tiada yang dapat memberi syafa'at di sisi Allah tanpa izin-Nya? Allah mengetahui apa-apa yang di hadapan mereka dan di belakang mereka, dan mereka tidak mengetahui apa-apa dari ilmu Allah melainkan apa yang dikehendaki-Nya. Kursi Allah meliputi langit dan bumi. Dan Allah tidak merasa berat memelihara keduanya, dan Allah Maha Tinggi lagi Maha Besar."
+  },
+  {
+    "id": 9,
+    "title": "Istighfar (3x)",
+    "arabic": "اَسْتَغْفِرُ اللهَ الْعَظِيْمَ",
+    "latin": "Astaghfirulloohal 'azhiim.",
+    "translation": "Aku memohon ampun kepada Allah Yang Maha Agung."
+  },
+  {
+    "id": 10,
+    "title": "Inti Tahlil (33x / 100x)",
+    "arabic": "لَا اِلٰهَ اِلَّا اللّٰهُ",
+    "latin": "Laa ilaaha illallooh.",
+    "translation": "Tiada Tuhan selain Allah."
+  },
+  {
+    "id": 11,
+    "title": "Doa Tahlil",
+    "arabic": "اَللَّهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَعَافِهِمْ وَاعْفُ عَنْهُمْ",
+    "latin": "Alloohummaghfir lahum warhamhum wa 'aafihim wa'fu 'anhum.",
+    "translation": "Ya Allah, ampunilah mereka, kasihanilah mereka, sejahterakanlah mereka, dan maafkanlah mereka."
+  }
+]

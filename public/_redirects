@@ -1,0 +1,6 @@
+/*
+  Redirects semua route ke index.html agar React Router bekerja dengan benar di Netlify.
+  File ini dibutuhkan HANYA jika deploy ke Netlify.
+  Untuk Vercel, tidak diperlukan karena dikonfigurasi di vercel.json.
+*/
+/* from = "/*" to = "/index.html" status = 200 */
