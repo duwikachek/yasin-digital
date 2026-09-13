@@ -6,17 +6,21 @@ export default function Hero() {
   const { content } = useContent();
   const { hero } = content;
 
-  // Fallbacks for person1 (Papah) & person2 (Ibu)
+  // Fallbacks for person1 (Bapak) & person2 (Mamah)
   const person1 = hero.person1 || {
     name: hero.name || 'alm. Subiyantoro',
     birthDate: hero.birthDate || '-',
     deathDate: hero.deathDate || '-'
   };
-  const person2 = hero.person2 || {
-    name: 'almah. Nama Ibu',
-    birthDate: '-',
-    deathDate: '-'
-  };
+
+  const person2 = hero.person2;
+  const showPerson2 = Boolean(
+    person2 &&
+    person2.name &&
+    person2.name.trim() !== '' &&
+    person2.name.trim() !== 'almah. Nama Ibu' &&
+    person2.name.trim() !== '-'
+  );
 
   return (
     <section className="relative flex flex-col justify-end min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen overflow-hidden pb-10 pt-20 sm:pt-32">
@@ -40,29 +44,35 @@ export default function Hero() {
           Mengenang
         </h1>
 
-        {/* 2 Nama (Bapak & Mamah) — Positioned at Bottom */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto mb-6">
+        {/* Card(s) Nama */}
+        <div className={`mx-auto mb-6 ${showPerson2 ? 'grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl' : 'max-w-md'}`}>
           {/* Card Bapak */}
           <div className="bg-stone-900/50 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-stone-900/70 transition-all duration-300 rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-2xl text-center">
-            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">Almarhum (Bapak)</span>
+            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">
+              {person1.label || 'Almarhum (Bapak)'}
+            </span>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-serif text-white font-medium italic mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               {person1.name}
             </h2>
             <div className="inline-block px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-stone-200 text-xs font-medium drop-shadow-md">
-              Lahir: {person1.birthDate} &nbsp;|&nbsp; Wafat: {person1.deathDate}
+              Lahir: {person1.birthDate || '-'} &nbsp;|&nbsp; Wafat: {person1.deathDate || '-'}
             </div>
           </div>
 
           {/* Card Mamah */}
-          <div className="bg-stone-900/50 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-stone-900/70 transition-all duration-300 rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-2xl text-center">
-            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">Almarhumah (Mamah)</span>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-serif text-white font-medium italic mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-              {person2.name}
-            </h2>
-            <div className="inline-block px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-stone-200 text-xs font-medium drop-shadow-md">
-              Lahir: {person2.birthDate} &nbsp;|&nbsp; Wafat: {person2.deathDate}
+          {showPerson2 && (
+            <div className="bg-stone-900/50 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-stone-900/70 transition-all duration-300 rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-2xl text-center">
+              <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">
+                {person2.label || 'Almarhumah (Mamah)'}
+              </span>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-serif text-white font-medium italic mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                {person2.name}
+              </h2>
+              <div className="inline-block px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-stone-200 text-xs font-medium drop-shadow-md">
+                Lahir: {person2.birthDate || '-'} &nbsp;|&nbsp; Wafat: {person2.deathDate || '-'}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <p className="mt-1 text-sm md:text-base text-stone-300 leading-relaxed max-w-2xl mx-auto drop-shadow-md font-light">

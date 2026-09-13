@@ -15,7 +15,7 @@ const defaultContent = {
     },
     person2: {
       label: "Almarhumah",
-      name: "almah. Nama Ibu",
+      name: "",
       birthDate: "-",
       deathDate: "-"
     }
