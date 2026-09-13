@@ -1,7 +1,23 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContent } from '../context/ContentContext';
-import { isSupabaseConfigured } from '../lib/supabase';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
+
+// ───── Upload foto ke Supabase Storage ─────
+async function uploadImageToSupabase(file) {
+  if (!supabase) return null;
+  const ext = file.name.split('.').pop();
+  const fileName = `img_${Date.now()}.${ext}`;
+  const { data, error } = await supabase.storage
+    .from('gallery')
+    .upload(fileName, file, { upsert: true, contentType: file.type });
+  if (error) {
+    console.error('Upload error:', error);
+    return null;
+  }
+  const { data: urlData } = supabase.storage.from('gallery').getPublicUrl(data.path);
+  return urlData?.publicUrl || null;
+}
 import {
   Save, LogOut, Image, Type, LayoutGrid, HelpCircle,
   Eye, RotateCcw, ChevronDown, ChevronUp, Plus, Trash2,
@@ -124,13 +140,34 @@ function TextArea({ value, onChange, placeholder, rows = 3 }) {
 // ───── Image URL Input dengan Preview ─────
 function ImageField({ label, value, onChange }) {
   const fileRef = useRef();
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => onChange(ev.target.result);
-    reader.readAsDataURL(file);
+    setUploadError('');
+
+    // Jika Supabase tersedia → upload ke Supabase Storage (dapat URL cloud)
+    if (isSupabaseConfigured && supabase) {
+      setUploading(true);
+      const url = await uploadImageToSupabase(file);
+      setUploading(false);
+      if (url) {
+        onChange(url);
+      } else {
+        setUploadError('Gagal upload ke cloud. Pastikan Supabase Storage bucket "gallery" sudah dibuat dan publik.');
+        // Fallback ke base64
+        const reader = new FileReader();
+        reader.onload = (ev) => onChange(ev.target.result);
+        reader.readAsDataURL(file);
+      }
+    } else {
+      // Fallback: simpan sebagai base64 jika tidak ada Supabase
+      const reader = new FileReader();
+      reader.onload = (ev) => onChange(ev.target.result);
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -146,14 +183,28 @@ function ImageField({ label, value, onChange }) {
         />
         <button
           onClick={() => fileRef.current.click()}
-          className="flex items-center gap-2 px-3 py-2 bg-stone-700 hover:bg-stone-600 text-stone-300 rounded-xl text-sm transition-colors"
+          disabled={uploading}
+          className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm transition-colors ${
+            uploading
+              ? 'bg-stone-700 text-stone-500 cursor-not-allowed'
+              : 'bg-stone-700 hover:bg-stone-600 text-stone-300'
+          }`}
         >
-          <Upload className="w-4 h-4" />
-          <span className="hidden sm:inline">Upload</span>
+          <Upload className={`w-4 h-4 ${uploading ? 'animate-spin' : ''}`} />
+          <span className="hidden sm:inline">{uploading ? 'Uploading...' : 'Upload'}</span>
         </button>
         <input ref={fileRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
       </div>
-      {value && (
+      {uploading && (
+        <p className="text-emerald-400 text-xs mb-2 flex items-center gap-1">
+          <span className="inline-block w-3 h-3 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
+          Sedang mengupload foto ke cloud...
+        </p>
+      )}
+      {uploadError && (
+        <p className="text-red-400 text-xs mb-2">⚠️ {uploadError}</p>
+      )}
+      {value && !uploading && (
         <div className="rounded-xl overflow-hidden h-32 bg-stone-800 border border-stone-700">
           <img src={value} alt="preview" className="w-full h-full object-cover" onError={(e) => e.target.style.display = 'none'} />
         </div>
