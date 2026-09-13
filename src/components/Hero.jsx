@@ -40,11 +40,11 @@ export default function Hero() {
           Mengenang
         </h1>
 
-        {/* 2 Nama (Papah & Ibu) — Positioned at Bottom */}
+        {/* 2 Nama (Bapak & Mamah) — Positioned at Bottom */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto mb-6">
-          {/* Card Papah */}
+          {/* Card Bapak */}
           <div className="bg-stone-900/50 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-stone-900/70 transition-all duration-300 rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-2xl text-center">
-            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">Almarhum (Papah)</span>
+            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">Almarhum (Bapak)</span>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-serif text-white font-medium italic mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               {person1.name}
             </h2>
@@ -53,9 +53,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Card Ibu */}
+          {/* Card Mamah */}
           <div className="bg-stone-900/50 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-stone-900/70 transition-all duration-300 rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-2xl text-center">
-            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">Almarhumah (Ibu)</span>
+            <span className="text-[11px] md:text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-md">Almarhumah (Mamah)</span>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-serif text-white font-medium italic mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               {person2.name}
             </h2>

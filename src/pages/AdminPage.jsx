@@ -296,27 +296,27 @@ export default function AdminPage() {
               </Field>
             </div>
 
-            {/* Form Data Papah */}
+            {/* Form Data Bapak */}
             <div className="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
               <h3 className="text-emerald-400 font-semibold mb-4 text-sm flex items-center gap-2">
-                👨 Data Almarhum (Papah)
+                👨 Data Almarhum (Bapak)
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Field label="Nama Papah">
+                <Field label="Nama Bapak">
                   <TextInput
                     value={hero.person1?.name || ''}
                     onChange={(v) => setHero({ ...hero, person1: { ...hero.person1, name: v } })}
                     placeholder="Contoh: alm. Subiyantoro"
                   />
                 </Field>
-                <Field label="Tanggal Lahir Papah">
+                <Field label="Tanggal Lahir Bapak">
                   <TextInput
                     value={hero.person1?.birthDate || ''}
                     onChange={(v) => setHero({ ...hero, person1: { ...hero.person1, birthDate: v } })}
                     placeholder="Contoh: 15 Januari 1955"
                   />
                 </Field>
-                <Field label="Tanggal Wafat Papah">
+                <Field label="Tanggal Wafat Bapak">
                   <TextInput
                     value={hero.person1?.deathDate || ''}
                     onChange={(v) => setHero({ ...hero, person1: { ...hero.person1, deathDate: v } })}
@@ -326,27 +326,27 @@ export default function AdminPage() {
               </div>
             </div>
 
-            {/* Form Data Ibu */}
+            {/* Form Data Mamah */}
             <div className="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
               <h3 className="text-emerald-400 font-semibold mb-4 text-sm flex items-center gap-2">
-                👩 Data Almarhumah (Ibu)
+                👩 Data Almarhumah (Mamah)
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Field label="Nama Ibu">
+                <Field label="Nama Mamah">
                   <TextInput
                     value={hero.person2?.name || ''}
                     onChange={(v) => setHero({ ...hero, person2: { ...hero.person2, name: v } })}
-                    placeholder="Contoh: almah. Nama Ibu"
+                    placeholder="Contoh: almah. Nama Mamah"
                   />
                 </Field>
-                <Field label="Tanggal Lahir Ibu">
+                <Field label="Tanggal Lahir Mamah">
                   <TextInput
                     value={hero.person2?.birthDate || ''}
                     onChange={(v) => setHero({ ...hero, person2: { ...hero.person2, birthDate: v } })}
                     placeholder="Contoh: 10 Mei 1960"
                   />
                 </Field>
-                <Field label="Tanggal Wafat Ibu">
+                <Field label="Tanggal Wafat Mamah">
                   <TextInput
                     value={hero.person2?.deathDate || ''}
                     onChange={(v) => setHero({ ...hero, person2: { ...hero.person2, deathDate: v } })}
