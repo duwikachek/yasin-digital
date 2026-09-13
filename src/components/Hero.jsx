@@ -19,7 +19,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex flex-col justify-end min-h-[90vh] lg:min-h-screen overflow-hidden pb-12 pt-32">
+    <section className="relative flex flex-col justify-end min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen overflow-hidden pb-10 pt-20 sm:pt-32">
       <div className="absolute inset-0 z-0">
         <img
           src={hero.bgImage || hero.backgroundImage}

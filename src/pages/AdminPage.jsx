@@ -4,7 +4,7 @@ import { useContent } from '../context/ContentContext';
 import {
   Save, LogOut, Image, Type, LayoutGrid, HelpCircle,
   Eye, RotateCcw, ChevronDown, ChevronUp, Plus, Trash2,
-  Lock, Upload, CheckCircle, AlertCircle
+  Lock, Upload, CheckCircle, AlertCircle, Download, FileText
 } from 'lucide-react';
 
 const DEFAULT_PASSWORD = 'yasin2024';
@@ -226,6 +226,39 @@ export default function AdminPage() {
       resetContent();
       window.location.reload();
     }
+  };
+
+  const handleExport = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "yasin_content.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    showToast('✅ Data berhasil di-export ke yasin_content.json', 'success');
+  };
+
+  const handleCopyJSON = () => {
+    navigator.clipboard.writeText(JSON.stringify(content, null, 2));
+    showToast('✅ Data JSON disalin ke clipboard!', 'success');
+  };
+
+  const handleImportJSON = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const imported = JSON.parse(event.target.result);
+        updateContent(imported);
+        showToast('✅ Data berhasil di-import!', 'success');
+        setTimeout(() => window.location.reload(), 1000);
+      } catch {
+        showToast('❌ File JSON tidak valid!', 'error');
+      }
+    };
+    reader.readAsText(file);
   };
 
   // Gallery helpers
@@ -459,6 +492,36 @@ export default function AdminPage() {
               </button>
             </div>
           </Field>
+        </SectionCard>
+
+        {/* ── BACKUP & TRANSFER DATA ── */}
+        <SectionCard title="Backup & Transfer Data Antar Perangkat (HP / Laptop)" icon={Download}>
+          <p className="text-stone-400 text-sm mb-4">
+            Karena data pengeditan secara default tersimpan di browser perangkat ini (localStorage), Anda dapat meng-export data dari Laptop untuk dimasukkan ke HP atau disalin.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={handleExport}
+              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-emerald-400 border border-stone-700 rounded-xl text-sm font-medium transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Download Backup (yasin_content.json)
+            </button>
+
+            <button
+              onClick={handleCopyJSON}
+              className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 rounded-xl text-sm font-medium transition-colors"
+            >
+              <FileText className="w-4 h-4" />
+              Salin Kode JSON (Clipboard)
+            </button>
+
+            <label className="flex items-center gap-2 px-4 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium cursor-pointer transition-colors">
+              <Upload className="w-4 h-4" />
+              Upload / Import File JSON
+              <input type="file" accept=".json" onChange={handleImportJSON} className="hidden" />
+            </label>
+          </div>
         </SectionCard>
 
         {/* Save Bottom */}
