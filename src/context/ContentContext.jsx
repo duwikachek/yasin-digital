@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 // === DEFAULT CONTENT (fallback jika localStorage kosong) ===
 const defaultContent = {
   hero: {
+    siteTitle: "Yasin Digital",
     name: "alm. Subiyantoro",
     tagline: "Buku Yasin Digital",
     description: "Mari sejenak menundukkan kepala, memanjatkan doa, dan melantunkan ayat suci Al-Qur'an. Semoga amal ibadah beliau diterima di sisi-Nya dan diberikan tempat terbaik.",

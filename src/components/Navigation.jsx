@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useState } from 'react';
 import { useTheme } from './ThemeProvider';
+import { useContent } from '../context/ContentContext';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const { content } = useContent();
+
+  const siteTitle = content?.hero?.siteTitle || 'Yasin Digital';
 
   const links = [
     { name: 'Halaman Depan', path: '/' },
@@ -20,7 +24,7 @@ export default function Navigation() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex-shrink-0">
               <Link to="/" className="text-lg font-medium tracking-tight text-stone-900 dark:text-stone-100">
-                Yasin Digital
+                {siteTitle}
               </Link>
             </div>
             

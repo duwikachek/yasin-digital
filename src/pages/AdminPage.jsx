@@ -271,6 +271,9 @@ export default function AdminPage() {
         {/* ── HERO ── */}
         <SectionCard title="Halaman Utama (Hero Section)" icon={Type} defaultOpen={true}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Field label="Judul / Nama Web Navigasi (Pojok Kiri Atas)">
+              <TextInput value={hero.siteTitle || 'Yasin Digital'} onChange={(v) => setHero({ ...hero, siteTitle: v })} />
+            </Field>
             <Field label="Tagline (Sub-judul atas)">
               <TextInput value={hero.tagline} onChange={(v) => setHero({ ...hero, tagline: v })} />
             </Field>
