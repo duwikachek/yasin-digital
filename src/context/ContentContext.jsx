@@ -23,7 +23,7 @@ const defaultContent = {
       id: 1,
       title: "Momen Kebersamaan",
       description: "Kenangan indah bersama alm. SUBIYANTORO dalam momen kebersamaan bersama keluarga yang selalu terpatri di hati.",
-      className: "md:col-span-2",
+      className: "col-span-1",
       thumbnail: "https://picsum.photos/seed/family1/1200/800",
     },
     {
@@ -44,8 +44,22 @@ const defaultContent = {
       id: 4,
       title: "Kenangan Tak Terlupakan",
       description: "Momen-momen bersama keluarga yang tak ternilai dan akan selalu hidup dalam hati kami semua.",
-      className: "md:col-span-2",
+      className: "col-span-1",
       thumbnail: "https://picsum.photos/seed/river4/1200/800",
+    },
+    {
+      id: 5,
+      title: "Kasih Sayang Beliau",
+      description: "Kasih sayang dan kehangatan yang beliau berikan senantiasa menyinari setiap langkah perjalanan hidup kami.",
+      className: "col-span-1",
+      thumbnail: "https://picsum.photos/seed/peace5/1200/800",
+    },
+    {
+      id: 6,
+      title: "Doa & Harapan",
+      description: "Untaian doa kami harapkan senantiasa melingkupi beliau di alam sana.",
+      className: "col-span-1",
+      thumbnail: "https://picsum.photos/seed/light6/1200/800",
     },
   ],
   faq: [

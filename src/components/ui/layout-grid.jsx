@@ -17,8 +17,8 @@ export const LayoutGrid = ({ cards }) => {
 
   return (
     <>
-      {/* Grid kartu */}
-      <div className="w-full p-4 sm:p-6 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-4 auto-rows-[200px] md:auto-rows-[280px]">
+      {/* Grid kartu (2 2 2 = 2 kolom x 3 baris) */}
+      <div className="w-full p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto gap-4 auto-rows-[250px] md:auto-rows-[300px]">
         {cards.map((card, i) => (
           <div
             key={card.id}
