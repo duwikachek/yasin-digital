@@ -170,7 +170,16 @@ export default function AdminPage() {
 
   // Local working copies
   const [hero, setHero] = useState(content.hero);
-  const [intro, setIntro] = useState(content.intro);
+  const [intro, setIntro] = useState(() => {
+    const existing = content.intro || {};
+    const paras = existing.paragraphs || [];
+    return {
+      title: existing.title || 'Kata Pengantar',
+      p1: existing.p1 || paras[0] || '',
+      p2: existing.p2 || paras[1] || '',
+      p3: existing.p3 || paras[2] || '',
+    };
+  });
   const [gallery, setGallery] = useState(content.gallery);
   const [faq, setFaq] = useState(content.faq);
   const [newPassword, setNewPassword] = useState('');
@@ -191,7 +200,14 @@ export default function AdminPage() {
   };
 
   const handleSave = () => {
-    updateContent({ hero, intro, gallery, faq });
+    const formattedIntro = {
+      title: intro.title,
+      paragraphs: [intro.p1, intro.p2, intro.p3].filter(p => p !== undefined && p !== null && p !== ''),
+      p1: intro.p1,
+      p2: intro.p2,
+      p3: intro.p3
+    };
+    updateContent({ hero, intro: formattedIntro, gallery, faq });
     showToast('✅ Perubahan berhasil disimpan!', 'success');
   };
 

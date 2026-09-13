@@ -60,8 +60,11 @@ export default function Home() {
             <h2 className="text-3xl font-serif text-stone-900 dark:text-stone-100 mb-8 font-medium">{intro.title}</h2>
             
             <div className="text-stone-600 dark:text-stone-300 leading-loose text-lg font-serif space-y-4">
-              {intro.paragraphs.map((para, i) => (
-                <p key={i}>{i === 0 ? <><span className="text-2xl text-emerald-700 dark:text-emerald-400">{para[0]}</span>{para.slice(1)}</> : para}</p>
+              {((intro.paragraphs && intro.paragraphs.length > 0)
+                ? intro.paragraphs
+                : [intro.p1, intro.p2, intro.p3].filter(Boolean)
+              ).map((para, i) => (
+                <p key={i}>{i === 0 && para ? <><span className="text-2xl text-emerald-700 dark:text-emerald-400">{para[0]}</span>{para.slice(1)}</> : para}</p>
               ))}
             </div>
 
