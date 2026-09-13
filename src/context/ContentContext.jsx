@@ -4,12 +4,21 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const defaultContent = {
   hero: {
     siteTitle: "Yasin Digital",
-    name: "alm. Subiyantoro",
     tagline: "Buku Yasin Digital",
     description: "Mari sejenak menundukkan kepala, memanjatkan doa, dan melantunkan ayat suci Al-Qur'an. Semoga amal ibadah beliau diterima di sisi-Nya dan diberikan tempat terbaik.",
-    birthDate: "-",
-    deathDate: "-",
     backgroundImage: "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&q=80&w=2000",
+    person1: {
+      label: "Almarhum",
+      name: "alm. Subiyantoro",
+      birthDate: "-",
+      deathDate: "-"
+    },
+    person2: {
+      label: "Almarhumah",
+      name: "almah. Nama Ibu",
+      birthDate: "-",
+      deathDate: "-"
+    }
   },
   intro: {
     title: "Kata Pengantar",

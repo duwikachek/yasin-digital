@@ -270,23 +270,88 @@ export default function AdminPage() {
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* ── HERO ── */}
         <SectionCard title="Halaman Utama (Hero Section)" icon={Type} defaultOpen={true}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Field label="Judul / Nama Web Navigasi (Pojok Kiri Atas)">
-              <TextInput value={hero.siteTitle || 'Yasin Digital'} onChange={(v) => setHero({ ...hero, siteTitle: v })} />
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Judul / Nama Web Navigasi (Pojok Kiri Atas)">
+                <TextInput value={hero.siteTitle || 'Yasin Digital'} onChange={(v) => setHero({ ...hero, siteTitle: v })} />
+              </Field>
+              <Field label="Tagline (Sub-judul atas)">
+                <TextInput value={hero.tagline || 'Buku Yasin Digital'} onChange={(v) => setHero({ ...hero, tagline: v })} />
+              </Field>
+            </div>
+
+            {/* Form Data Papah */}
+            <div className="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
+              <h3 className="text-emerald-400 font-semibold mb-4 text-sm flex items-center gap-2">
+                👨 Data Almarhum (Papah)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Field label="Nama Papah">
+                  <TextInput
+                    value={hero.person1?.name || ''}
+                    onChange={(v) => setHero({ ...hero, person1: { ...hero.person1, name: v } })}
+                    placeholder="Contoh: alm. Subiyantoro"
+                  />
+                </Field>
+                <Field label="Tanggal Lahir Papah">
+                  <TextInput
+                    value={hero.person1?.birthDate || ''}
+                    onChange={(v) => setHero({ ...hero, person1: { ...hero.person1, birthDate: v } })}
+                    placeholder="Contoh: 15 Januari 1955"
+                  />
+                </Field>
+                <Field label="Tanggal Wafat Papah">
+                  <TextInput
+                    value={hero.person1?.deathDate || ''}
+                    onChange={(v) => setHero({ ...hero, person1: { ...hero.person1, deathDate: v } })}
+                    placeholder="Contoh: 20 Agustus 2023"
+                  />
+                </Field>
+              </div>
+            </div>
+
+            {/* Form Data Ibu */}
+            <div className="bg-stone-800/60 border border-stone-700 rounded-xl p-5">
+              <h3 className="text-emerald-400 font-semibold mb-4 text-sm flex items-center gap-2">
+                👩 Data Almarhumah (Ibu)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Field label="Nama Ibu">
+                  <TextInput
+                    value={hero.person2?.name || ''}
+                    onChange={(v) => setHero({ ...hero, person2: { ...hero.person2, name: v } })}
+                    placeholder="Contoh: almah. Nama Ibu"
+                  />
+                </Field>
+                <Field label="Tanggal Lahir Ibu">
+                  <TextInput
+                    value={hero.person2?.birthDate || ''}
+                    onChange={(v) => setHero({ ...hero, person2: { ...hero.person2, birthDate: v } })}
+                    placeholder="Contoh: 10 Mei 1960"
+                  />
+                </Field>
+                <Field label="Tanggal Wafat Ibu">
+                  <TextInput
+                    value={hero.person2?.deathDate || ''}
+                    onChange={(v) => setHero({ ...hero, person2: { ...hero.person2, deathDate: v } })}
+                    placeholder="Contoh: 12 Desember 2024"
+                  />
+                </Field>
+              </div>
+            </div>
+
+            <Field label="Deskripsi Singkat / Pengantar di Bawah Nama">
+              <TextArea
+                value={hero.description || ''}
+                onChange={(v) => setHero({ ...hero, description: v })}
+                rows={2}
+              />
             </Field>
-            <Field label="Tagline (Sub-judul atas)">
-              <TextInput value={hero.tagline} onChange={(v) => setHero({ ...hero, tagline: v })} />
-            </Field>
-            <Field label="Nama Almarhum / Almarhumah">
-              <TextInput value={hero.name} onChange={(v) => setHero({ ...hero, name: v })} />
-            </Field>
-            <Field label="Tanggal Lahir & Wafat (Keterangan)">
-              <TextInput value={hero.description} onChange={(v) => setHero({ ...hero, description: v })} />
-            </Field>
+
             <ImageField
               label="Foto Utama (Background Hero)"
-              value={hero.bgImage}
-              onChange={(v) => setHero({ ...hero, bgImage: v })}
+              value={hero.bgImage || hero.backgroundImage || ''}
+              onChange={(v) => setHero({ ...hero, bgImage: v, backgroundImage: v })}
             />
           </div>
         </SectionCard>
