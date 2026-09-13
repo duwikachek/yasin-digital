@@ -7,7 +7,10 @@ import {
   Lock, Upload, CheckCircle, AlertCircle
 } from 'lucide-react';
 
-const ADMIN_PASSWORD = 'yasin2024';
+const DEFAULT_PASSWORD = 'yasin2024';
+
+const getStoredPassword = () => localStorage.getItem('yasin_admin_password') || DEFAULT_PASSWORD;
+const setStoredPassword = (newPass) => localStorage.setItem('yasin_admin_password', newPass);
 
 // ───── Komponen Toast Notifikasi ─────
 function Toast({ message, type, onClose }) {
@@ -26,7 +29,7 @@ function LoginPage({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+    if (password === getStoredPassword()) {
       onLogin();
     } else {
       setError(true);
@@ -60,7 +63,6 @@ function LoginPage({ onLogin }) {
           <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 rounded-xl transition-colors">
             Masuk ke Panel Admin
           </button>
-          <p className="text-stone-600 text-xs text-center mt-4">Kata sandi default: <code className="text-stone-400">yasin2024</code></p>
         </form>
       </div>
     </div>
@@ -171,6 +173,7 @@ export default function AdminPage() {
   const [intro, setIntro] = useState(content.intro);
   const [gallery, setGallery] = useState(content.gallery);
   const [faq, setFaq] = useState(content.faq);
+  const [newPassword, setNewPassword] = useState('');
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
@@ -190,6 +193,16 @@ export default function AdminPage() {
   const handleSave = () => {
     updateContent({ hero, intro, gallery, faq });
     showToast('✅ Perubahan berhasil disimpan!', 'success');
+  };
+
+  const handleSavePassword = () => {
+    if (!newPassword.trim()) {
+      showToast('Kata sandi baru tidak boleh kosong!', 'error');
+      return;
+    }
+    setStoredPassword(newPassword.trim());
+    setNewPassword('');
+    showToast('✅ Kata sandi admin berhasil diperbarui!', 'success');
   };
 
   const handleReset = () => {
@@ -246,7 +259,7 @@ export default function AdminPage() {
               <Save className="w-4 h-4" />
               Simpan
             </button>
-            <button onClick={handleLogout} className="p-2 text-stone-500 hover:text-white hover:bg-stone-800 rounded-xl transition-colors">
+            <button onClick={handleLogout} className="p-2 text-stone-500 hover:text-white hover:bg-stone-800 rounded-xl transition-colors" title="Keluar">
               <LogOut className="w-4 h-4" />
             </button>
           </div>
@@ -256,41 +269,41 @@ export default function AdminPage() {
       {/* Content */}
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* ── HERO ── */}
-        <SectionCard title="Tampilan Utama (Hero)" icon={Type} defaultOpen={true}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Field label="Nama Almarhum">
-              <TextInput value={hero.name} onChange={(v) => setHero(p => ({ ...p, name: v }))} placeholder="Nama almarhum..." />
+        <SectionCard title="Halaman Utama (Hero Section)" icon={Type} defaultOpen={true}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Field label="Tagline (Sub-judul atas)">
+              <TextInput value={hero.tagline} onChange={(v) => setHero({ ...hero, tagline: v })} />
             </Field>
-            <Field label="Tagline / Label">
-              <TextInput value={hero.tagline} onChange={(v) => setHero(p => ({ ...p, tagline: v }))} placeholder="Contoh: Buku Yasin Digital" />
+            <Field label="Nama Almarhum / Almarhumah">
+              <TextInput value={hero.name} onChange={(v) => setHero({ ...hero, name: v })} />
             </Field>
-            <Field label="Tanggal Lahir">
-              <TextInput value={hero.birthDate} onChange={(v) => setHero(p => ({ ...p, birthDate: v }))} placeholder="Contoh: 1 Januari 1950" />
+            <Field label="Tanggal Lahir & Wafat (Keterangan)">
+              <TextInput value={hero.description} onChange={(v) => setHero({ ...hero, description: v })} />
             </Field>
-            <Field label="Tanggal Wafat">
-              <TextInput value={hero.deathDate} onChange={(v) => setHero(p => ({ ...p, deathDate: v }))} placeholder="Contoh: 25 Desember 2023" />
-            </Field>
+            <ImageField
+              label="Foto Utama (Background Hero)"
+              value={hero.bgImage}
+              onChange={(v) => setHero({ ...hero, bgImage: v })}
+            />
           </div>
-          <Field label="Deskripsi / Kalimat Pengantar Hero">
-            <TextArea value={hero.description} onChange={(v) => setHero(p => ({ ...p, description: v }))} rows={3} />
-          </Field>
-          <ImageField label="Gambar Latar Belakang Hero" value={hero.backgroundImage} onChange={(v) => setHero(p => ({ ...p, backgroundImage: v }))} />
         </SectionCard>
 
         {/* ── KATA PENGANTAR ── */}
-        <SectionCard title="Kata Pengantar" icon={Type}>
-          <Field label="Judul">
-            <TextInput value={intro.title} onChange={(v) => setIntro(p => ({ ...p, title: v }))} />
-          </Field>
-          {intro.paragraphs.map((para, i) => (
-            <Field key={i} label={`Paragraf ${i + 1}`}>
-              <TextArea
-                value={para}
-                onChange={(v) => setIntro(p => ({ ...p, paragraphs: p.paragraphs.map((x, xi) => xi === i ? v : x) }))}
-                rows={2}
-              />
+        <SectionCard title="Kata Pengantar Keluarga" icon={Type}>
+          <div className="space-y-4">
+            <Field label="Judul Bagian">
+              <TextInput value={intro.title} onChange={(v) => setIntro({ ...intro, title: v })} />
             </Field>
-          ))}
+            <Field label="Paragraf 1">
+              <TextArea value={intro.p1} onChange={(v) => setIntro({ ...intro, p1: v })} />
+            </Field>
+            <Field label="Paragraf 2">
+              <TextArea value={intro.p2} onChange={(v) => setIntro({ ...intro, p2: v })} />
+            </Field>
+            <Field label="Paragraf 3 (Penutup)">
+              <TextArea value={intro.p3} onChange={(v) => setIntro({ ...intro, p3: v })} />
+            </Field>
+          </div>
         </SectionCard>
 
         {/* ── GALERI ── */}
@@ -341,11 +354,27 @@ export default function AdminPage() {
         </SectionCard>
 
         {/* ── GANTI PASSWORD ── */}
-        <SectionCard title="Keamanan" icon={Lock}>
+        <SectionCard title="Keamanan & Ganti Kata Sandi" icon={Lock}>
           <p className="text-stone-400 text-sm mb-4">
-            Kata sandi admin saat ini tersimpan di kode. Untuk menggantinya, hubungi developer dan minta mengubah nilai <code className="text-emerald-400 bg-stone-800 px-2 py-0.5 rounded">ADMIN_PASSWORD</code> di file <code className="text-emerald-400 bg-stone-800 px-2 py-0.5 rounded">AdminPage.jsx</code>.
+            Ubah kata sandi untuk masuk ke Panel Admin ini. Kata sandi baru akan langsung berlaku.
           </p>
-          <p className="text-stone-500 text-xs">Kata sandi aktif: <span className="text-stone-400 font-mono">yasin2024</span></p>
+          <Field label="Kata Sandi Baru">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Masukkan kata sandi baru..."
+                className="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-600 focus:outline-none focus:border-emerald-500 transition-colors"
+              />
+              <button
+                onClick={handleSavePassword}
+                className="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium text-sm transition-colors whitespace-nowrap shadow-lg shadow-emerald-900/40"
+              >
+                Ganti Kata Sandi
+              </button>
+            </div>
+          </Field>
         </SectionCard>
 
         {/* Save Bottom */}
