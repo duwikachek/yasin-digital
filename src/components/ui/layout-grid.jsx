@@ -3,6 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../lib/utils";
 import { X } from "lucide-react";
 
+const gridSpans = [
+  "md:col-span-2", // Baris 1: Gede
+  "md:col-span-1", // Baris 1: Kecil
+  "md:col-span-1", // Baris 2: Kecil
+  "md:col-span-2", // Baris 2: Gede
+  "md:col-span-2", // Baris 3: Gede
+  "md:col-span-1", // Baris 3: Kecil
+];
+
 export const LayoutGrid = ({ cards }) => {
   const [selected, setSelected] = useState(null);
 
@@ -17,12 +26,12 @@ export const LayoutGrid = ({ cards }) => {
 
   return (
     <>
-      {/* Grid kartu (2 2 2 = 2 kolom x 3 baris) */}
-      <div className="w-full p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto gap-4 auto-rows-[250px] md:auto-rows-[300px]">
+      {/* Grid kartu (Baris 1: Gede-Kecil, Baris 2: Kecil-Gede, Baris 3: Gede-Kecil) */}
+      <div className="w-full p-4 sm:p-6 grid grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto gap-4 auto-rows-[250px] md:auto-rows-[300px]">
         {cards.map((card, i) => (
           <div
             key={card.id}
-            className="col-span-1 relative overflow-hidden rounded-2xl cursor-pointer group"
+            className={cn(gridSpans[i % gridSpans.length], "relative overflow-hidden rounded-2xl cursor-pointer group")}
             onClick={() => setSelected(card)}
           >
             <img
