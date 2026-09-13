@@ -391,7 +391,7 @@ export default function AdminPage() {
         </SectionCard>
 
         {/* ── GALERI ── */}
-        <SectionCard title="Galeri Kenangan (6 Foto)" icon={LayoutGrid}>
+        <SectionCard title={`Galeri Kenangan (${gallery.length} Foto)`} icon={LayoutGrid}>
           <div className="space-y-6">
             {gallery.map((item, i) => (
               <div key={item.id} className="bg-stone-800/50 border border-stone-700 rounded-xl p-4">

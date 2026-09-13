@@ -4,12 +4,13 @@ import { cn } from "../../lib/utils";
 import { X } from "lucide-react";
 
 const gridSpans = [
-  "md:col-span-2", // Baris 1: Gede
-  "md:col-span-1", // Baris 1: Kecil
-  "md:col-span-1", // Baris 2: Kecil
-  "md:col-span-2", // Baris 2: Gede
-  "md:col-span-2", // Baris 3: Gede
-  "md:col-span-1", // Baris 3: Kecil
+  "md:col-span-2", // Baris 1: Foto 1 (Gede)
+  "md:col-span-1", // Baris 1: Foto 2 (Kecil)
+  "md:col-span-1", // Baris 2: Foto 3 (Kecil)
+  "md:col-span-2", // Baris 2: Foto 4 (Gede)
+  "md:col-span-2", // Baris 3: Foto 5 (Gede)
+  "md:col-span-1", // Baris 3: Foto 6 (Kecil)
+  "md:col-span-3", // Baris 4: Foto 7 (Penuh - 1)
 ];
 
 export const LayoutGrid = ({ cards }) => {

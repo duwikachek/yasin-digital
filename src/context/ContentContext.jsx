@@ -71,6 +71,13 @@ const defaultContent = {
       className: "col-span-1",
       thumbnail: "https://picsum.photos/seed/light6/1200/800",
     },
+    {
+      id: 7,
+      title: "Jejak Kebenaran & Keteladanan",
+      description: "Nasihat dan petuah beliau menjadi pedoman hidup yang tak pernah pudar.",
+      className: "col-span-1",
+      thumbnail: "https://picsum.photos/seed/legacy7/1200/800",
+    },
   ],
   faq: [
     {
@@ -98,7 +105,7 @@ export function ContentProvider({ children }) {
       if (saved) {
         const parsed = JSON.parse(saved);
         let gallery = parsed.gallery || defaultContent.gallery;
-        if (gallery.length < 6) {
+        if (gallery.length < 7) {
           gallery = [...gallery, ...defaultContent.gallery.slice(gallery.length)];
         }
         return { ...defaultContent, ...parsed, gallery };
