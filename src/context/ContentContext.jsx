@@ -4,19 +4,19 @@ import { supabase, isSupabaseConfigured } from '../lib/supabase';
 // === DEFAULT CONTENT (fallback jika localStorage / Supabase kosong) ===
 const defaultContent = {
   hero: {
-    siteTitle: "Yasin Digital",
+    siteTitle: "Keluarga Besar Subiyantoro",
     tagline: "Buku Yasin Digital",
     description: "Mari sejenak menundukkan kepala, memanjatkan doa, dan melantunkan ayat suci Al-Qur'an. Semoga amal ibadah beliau diterima di sisi-Nya dan diberikan tempat terbaik.",
     backgroundImage: "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&q=80&w=2000",
     person1: {
       label: "Almarhum",
-      name: "alm. Subiyantoro",
+      name: "alm. Subiyantoro binti Hartono",
       birthDate: "-",
       deathDate: "-"
     },
     person2: {
       label: "Almarhumah",
-      name: "",
+      name: "almah. Emah bin Yahya",
       birthDate: "-",
       deathDate: "-"
     }
@@ -118,6 +118,7 @@ export function ContentProvider({ children }) {
   });
 
   // Sinkronisasi otomatis dengan Supabase Database
+  // Supabase SELALU menang — data dari Supabase override localStorage
   useEffect(() => {
     if (!isSupabaseConfigured || !supabase) return;
 
@@ -129,10 +130,25 @@ export function ContentProvider({ children }) {
           .eq('id', 1)
           .maybeSingle();
 
-        if (data && data.content && !error) {
+        if (!error && data && data.content) {
+          // Supabase punya data — pakai data Supabase
           const merged = { ...defaultContent, ...data.content };
           setContent(merged);
           localStorage.setItem('yasin_content', JSON.stringify(merged));
+        } else if (!error && !data) {
+          // Supabase kosong — seed dengan data defaultContent yang sudah benar
+          const currentData = (() => {
+            try {
+              const saved = localStorage.getItem('yasin_content');
+              if (saved) return { ...defaultContent, ...JSON.parse(saved) };
+            } catch { /* ignore */ }
+            return defaultContent;
+          })();
+          await supabase
+            .from('site_content')
+            .upsert({ id: 1, content: currentData, updated_at: new Date().toISOString() });
+          setContent(currentData);
+          localStorage.setItem('yasin_content', JSON.stringify(currentData));
         }
       } catch (err) {
         console.warn('Supabase fetch notice:', err);
