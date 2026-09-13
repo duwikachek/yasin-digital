@@ -22,43 +22,44 @@ export default function Hero() {
     <section className="relative flex items-center justify-center min-h-[85vh] lg:min-h-screen overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src={hero.backgroundImage}
+          src={hero.bgImage || hero.backgroundImage}
           alt="Foto Background"
           className="w-full h-full object-cover object-top"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 via-stone-900/70 to-stone-900/95" />
+        {/* Transparent gradient overlay agar foto terlihat jelas */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-stone-950/85" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center pt-16 pb-16">
-        <div className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium text-emerald-100 bg-emerald-900/40 backdrop-blur-md mb-6 border border-emerald-500/30 shadow-lg">
+        <div className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium text-emerald-100 bg-emerald-950/40 backdrop-blur-md mb-6 border border-emerald-400/30 shadow-lg">
           <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
           {hero.tagline}
         </div>
         
-        <h1 className="text-3xl font-serif text-white tracking-tight md:text-5xl lg:text-6xl mb-8 drop-shadow-md">
+        <h1 className="text-3xl font-serif text-white tracking-tight md:text-5xl lg:text-6xl mb-8 drop-shadow-[0_3px_6px_rgba(0,0,0,0.8)]">
           Mengenang
         </h1>
 
-        {/* 2 Nama (Papah & Ibu) */}
+        {/* 2 Nama (Papah & Ibu) — Kotak Transparan */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
           {/* Card Papah */}
-          <div className="bg-stone-900/60 backdrop-blur-md border border-emerald-500/30 rounded-3xl p-6 shadow-2xl text-center">
-            <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-1 block">Almarhum (Papah)</span>
-            <h2 className="text-2xl md:text-3xl font-serif text-emerald-200 font-medium italic mb-3">
+          <div className="bg-black/25 backdrop-blur-sm border border-white/20 hover:border-emerald-400/40 hover:bg-black/35 transition-all duration-300 rounded-3xl p-6 shadow-2xl text-center">
+            <span className="text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Almarhum (Papah)</span>
+            <h2 className="text-2xl md:text-3xl font-serif text-white font-medium italic mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)]">
               {person1.name}
             </h2>
-            <div className="inline-block px-4 py-1.5 rounded-full bg-black/40 border border-white/10 text-stone-300 text-xs sm:text-sm font-medium">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-stone-100 text-xs sm:text-sm font-medium drop-shadow-md">
               Lahir: {person1.birthDate} &nbsp;|&nbsp; Wafat: {person1.deathDate}
             </div>
           </div>
 
           {/* Card Ibu */}
-          <div className="bg-stone-900/60 backdrop-blur-md border border-emerald-500/30 rounded-3xl p-6 shadow-2xl text-center">
-            <span className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-1 block">Almarhumah (Ibu)</span>
-            <h2 className="text-2xl md:text-3xl font-serif text-emerald-200 font-medium italic mb-3">
+          <div className="bg-black/25 backdrop-blur-sm border border-white/20 hover:border-emerald-400/40 hover:bg-black/35 transition-all duration-300 rounded-3xl p-6 shadow-2xl text-center">
+            <span className="text-xs uppercase tracking-widest text-emerald-300 font-semibold mb-1 block drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Almarhumah (Ibu)</span>
+            <h2 className="text-2xl md:text-3xl font-serif text-white font-medium italic mb-3 drop-shadow-[0_3px_6px_rgba(0,0,0,0.9)]">
               {person2.name}
             </h2>
-            <div className="inline-block px-4 py-1.5 rounded-full bg-black/40 border border-white/10 text-stone-300 text-xs sm:text-sm font-medium">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-stone-100 text-xs sm:text-sm font-medium drop-shadow-md">
               Lahir: {person2.birthDate} &nbsp;|&nbsp; Wafat: {person2.deathDate}
             </div>
           </div>
