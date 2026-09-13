@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContent } from '../context/ContentContext';
+import { isSupabaseConfigured } from '../lib/supabase';
 import {
   Save, LogOut, Image, Type, LayoutGrid, HelpCircle,
   Eye, RotateCcw, ChevronDown, ChevronUp, Plus, Trash2,
-  Lock, Upload, CheckCircle, AlertCircle, Download, FileText
+  Lock, Upload, CheckCircle, AlertCircle, Download, FileText, Cloud
 } from 'lucide-react';
 
 const DEFAULT_PASSWORD = 'yasin2024';
@@ -283,7 +284,13 @@ export default function AdminPage() {
       <header className="sticky top-0 z-50 bg-stone-950/90 backdrop-blur-md border-b border-stone-800">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <div>
-            <h1 className="text-white font-semibold">⚙️ Panel Admin</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-white font-semibold">⚙️ Panel Admin</h1>
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium flex items-center gap-1 ${isSupabaseConfigured ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-stone-800 text-stone-400 border border-stone-700'}`}>
+                <Cloud className="w-3 h-3" />
+                {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
+              </span>
+            </div>
             <p className="text-stone-500 text-xs">Yasin Digital</p>
           </div>
           <div className="flex items-center gap-2">

@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
-// === DEFAULT CONTENT (fallback jika localStorage kosong) ===
+// === DEFAULT CONTENT (fallback jika localStorage / Supabase kosong) ===
 const defaultContent = {
   hero: {
     siteTitle: "Yasin Digital",
@@ -116,15 +117,60 @@ export function ContentProvider({ children }) {
     }
   });
 
-  const updateContent = (newContent) => {
+  // Sinkronisasi otomatis dengan Supabase Database
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return;
+
+    const fetchFromSupabase = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('site_content')
+          .select('content')
+          .eq('id', 1)
+          .maybeSingle();
+
+        if (data && data.content && !error) {
+          const merged = { ...defaultContent, ...data.content };
+          setContent(merged);
+          localStorage.setItem('yasin_content', JSON.stringify(merged));
+        }
+      } catch (err) {
+        console.warn('Supabase fetch notice:', err);
+      }
+    };
+
+    fetchFromSupabase();
+  }, []);
+
+  const updateContent = async (newContent) => {
     const merged = { ...content, ...newContent };
     setContent(merged);
     localStorage.setItem('yasin_content', JSON.stringify(merged));
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase
+          .from('site_content')
+          .upsert({ id: 1, content: merged, updated_at: new Date().toISOString() });
+      } catch (err) {
+        console.error('Failed to save to Supabase:', err);
+      }
+    }
   };
 
-  const resetContent = () => {
+  const resetContent = async () => {
     setContent(defaultContent);
     localStorage.removeItem('yasin_content');
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase
+          .from('site_content')
+          .upsert({ id: 1, content: defaultContent, updated_at: new Date().toISOString() });
+      } catch (err) {
+        console.error('Failed to reset Supabase:', err);
+      }
+    }
   };
 
   return (
