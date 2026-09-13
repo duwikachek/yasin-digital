@@ -22,7 +22,7 @@ export const LayoutGrid = ({ cards }) => {
         {cards.map((card, i) => (
           <div
             key={card.id}
-            className={cn(card.className, "relative overflow-hidden rounded-2xl cursor-pointer group")}
+            className="col-span-1 relative overflow-hidden rounded-2xl cursor-pointer group"
             onClick={() => setSelected(card)}
           >
             <img

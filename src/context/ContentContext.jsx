@@ -85,7 +85,15 @@ export function ContentProvider({ children }) {
   const [content, setContent] = useState(() => {
     try {
       const saved = localStorage.getItem('yasin_content');
-      return saved ? { ...defaultContent, ...JSON.parse(saved) } : defaultContent;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        let gallery = parsed.gallery || defaultContent.gallery;
+        if (gallery.length < 6) {
+          gallery = [...gallery, ...defaultContent.gallery.slice(gallery.length)];
+        }
+        return { ...defaultContent, ...parsed, gallery };
+      }
+      return defaultContent;
     } catch {
       return defaultContent;
     }
