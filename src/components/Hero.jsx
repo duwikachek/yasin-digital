@@ -35,10 +35,9 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium text-emerald-100 bg-emerald-950/60 backdrop-blur-md mb-4 border border-emerald-400/30 shadow-lg">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
+        <span className="text-sm font-medium text-emerald-200 tracking-wide mb-4 inline-block drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
           {hero.tagline}
-        </div>
+        </span>
         
         <h1 className="text-2xl font-serif text-white tracking-wide md:text-4xl lg:text-5xl mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
           Mengenang

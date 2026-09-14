@@ -2,22 +2,12 @@ import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import FAQAccordion from '../components/FAQAccordion';
 import Footer from '../components/Footer';
-import { LayoutGrid } from '../components/ui/layout-grid';
+import InteractiveGallery from '../components/ui/interactive-gallery';
 import { useContent } from '../context/ContentContext';
 
 export default function Home() {
   const { content } = useContent();
   const { gallery, intro } = content;
-
-  const galleryCards = gallery.map((item) => ({
-    ...item,
-    content: (
-      <div>
-        <p className="font-bold md:text-2xl text-xl text-stone-900 dark:text-stone-100">{item.title}</p>
-        <p className="font-normal text-base my-3 max-w-lg text-stone-600 dark:text-stone-400">{item.description}</p>
-      </div>
-    ),
-  }));
 
   return (
     <div className="flex min-h-screen flex-col bg-stone-50 dark:bg-stone-950 transition-colors duration-300 overflow-hidden">
@@ -43,12 +33,12 @@ export default function Home() {
                 Kenangan Bersama Beliau
               </h2>
               <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto">
-                Klik pada salah satu gambar untuk melihat keterangannya.
+                Klik pada salah satu panel untuk melihat keterangannya.
               </p>
             </div>
           </div>
-          <div className="min-h-[500px]">
-            <LayoutGrid cards={galleryCards} />
+          <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <InteractiveGallery items={gallery} />
           </div>
         </section>
         
