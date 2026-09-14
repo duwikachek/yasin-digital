@@ -7,7 +7,7 @@ const defaultContent = {
     siteTitle: "Keluarga Besar Subiyantoro",
     tagline: "Buku Yasin Digital",
     description: "Mari sejenak menundukkan kepala, memanjatkan doa, dan melantunkan ayat suci Al-Qur'an. Semoga amal ibadah beliau diterima di sisi-Nya dan diberikan tempat terbaik.",
-    backgroundImage: "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&q=80&w=2000",
+    backgroundImage: "https://xemaxaocdolfjuyqoylm.supabase.co/storage/v1/object/public/gallery/img_1789320940950.jpg",
     person1: {
       label: "Almarhum",
       name: "alm. Subiyantoro binti Hartono",
