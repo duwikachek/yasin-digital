@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Heart, Star, Camera, Flower2, Sun, BookOpen, Sparkles } from 'lucide-react';
 
 const galleryIcons = [
-  <Heart size={22} className="text-white" />,
-  <Star size={22} className="text-white" />,
-  <Camera size={22} className="text-white" />,
-  <Flower2 size={22} className="text-white" />,
-  <Sun size={22} className="text-white" />,
-  <BookOpen size={22} className="text-white" />,
-  <Sparkles size={22} className="text-white" />,
+  <Heart key="heart" size={22} className="text-white" />,
+  <Star key="star" size={22} className="text-white" />,
+  <Camera key="camera" size={22} className="text-white" />,
+  <Flower2 key="flower" size={22} className="text-white" />,
+  <Sun key="sun" size={22} className="text-white" />,
+  <BookOpen key="book" size={22} className="text-white" />,
+  <Sparkles key="sparkles" size={22} className="text-white" />,
 ];
 
 // ─── DESKTOP: horizontal expanding panels ───
@@ -217,20 +217,23 @@ const InteractiveGallery = ({ items = [] }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Reset pilihan animasi saat daftar atau mode berubah (dilakukan saat render)
+  const animationKey = `${items.length}-${isMobile}`;
+  const [lastAnimationKey, setLastAnimationKey] = useState(animationKey);
+  if (animationKey !== lastAnimationKey) {
+    setLastAnimationKey(animationKey);
+    setAnimatedOptions([]);
+  }
+
   // Staggered entrance animation
   useEffect(() => {
-    setAnimatedOptions([]);
-    const timers = [];
-    items.forEach((_, i) => {
-      const timer = setTimeout(() => {
-        setAnimatedOptions((prev) => [...prev, i]);
-      }, (isMobile ? 100 : 160) * i);
-      timers.push(timer);
-    });
-    return () => {
-      timers.forEach((timer) => clearTimeout(timer));
-    };
-  }, [items.length, isMobile]);
+    const timers = items.map((_, i) =>
+      setTimeout(() => {
+        setAnimatedOptions((prev) => (prev.includes(i) ? prev : [...prev, i]));
+      }, (isMobile ? 100 : 160) * i)
+    );
+    return () => timers.forEach((timer) => clearTimeout(timer));
+  }, [items, isMobile]);
 
   if (!items.length) return null;
 

@@ -3,7 +3,7 @@ import Hero from '../components/Hero';
 import FAQAccordion from '../components/FAQAccordion';
 import Footer from '../components/Footer';
 import InteractiveGallery from '../components/ui/interactive-gallery';
-import { useContent } from '../context/ContentContext';
+import { useContent } from '../context/content-context';
 
 export default function Home() {
   const { content } = useContent();

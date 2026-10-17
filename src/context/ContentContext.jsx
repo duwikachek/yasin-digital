@@ -1,13 +1,14 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { useState } from 'react';
+import { ContentContext } from './content-context';
+import publishedContent from '../data/site-content.json';
 
-// === DEFAULT CONTENT (fallback jika localStorage / Supabase kosong) ===
+// === DEFAULT CONTENT (fallback jika site-content.json / localStorage kosong) ===
 const defaultContent = {
   hero: {
     siteTitle: "Keluarga Besar Subiyantoro",
     tagline: "Buku Yasin Digital",
     description: "Mari sejenak menundukkan kepala, memanjatkan doa, dan melantunkan ayat suci Al-Qur'an. Semoga amal ibadah beliau diterima di sisi-Nya dan diberikan tempat terbaik.",
-    backgroundImage: "https://xemaxaocdolfjuyqoylm.supabase.co/storage/v1/object/public/gallery/img_1789320940950.jpg",
+    backgroundImage: "/hero_bg.jpg",
     person1: {
       label: "Almarhum",
       name: "alm. Subiyantoro binti Hartono",
@@ -97,7 +98,8 @@ const defaultContent = {
   adminPassword: "yasin2024"
 };
 
-const ContentContext = createContext(null);
+// === KONTEN TERPUBLIKASI (site-content.json) — dipakai SEMUA pengunjung ===
+const baseContent = { ...defaultContent, ...publishedContent };
 
 export function ContentProvider({ children }) {
   const [content, setContent] = useState(() => {
@@ -105,88 +107,31 @@ export function ContentProvider({ children }) {
       const saved = localStorage.getItem('yasin_content');
       if (saved) {
         const parsed = JSON.parse(saved);
-        let gallery = parsed.gallery || defaultContent.gallery;
+        let gallery = parsed.gallery || baseContent.gallery;
         if (gallery.length < 7) {
-          gallery = [...gallery, ...defaultContent.gallery.slice(gallery.length)];
+          gallery = [...gallery, ...baseContent.gallery.slice(gallery.length)];
         }
-        return { ...defaultContent, ...parsed, gallery };
+        return { ...baseContent, ...parsed, gallery };
       }
-      return defaultContent;
     } catch {
-      return defaultContent;
+      // localStorage rusak/kosong — pakai konten terpublikasi
     }
+    return baseContent;
   });
 
-  // Sinkronisasi otomatis dengan Supabase Database
-  // Supabase SELALU menang — data dari Supabase override localStorage
-  useEffect(() => {
-    if (!isSupabaseConfigured || !supabase) return;
-
-    const fetchFromSupabase = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('site_content')
-          .select('content')
-          .eq('id', 1)
-          .maybeSingle();
-
-        if (!error && data && data.content) {
-          // Supabase punya data — pakai data Supabase
-          const merged = { ...defaultContent, ...data.content };
-          setContent(merged);
-          localStorage.setItem('yasin_content', JSON.stringify(merged));
-        } else if (!error && !data) {
-          // Supabase kosong — seed dengan data defaultContent yang sudah benar
-          const currentData = (() => {
-            try {
-              const saved = localStorage.getItem('yasin_content');
-              if (saved) return { ...defaultContent, ...JSON.parse(saved) };
-            } catch { /* ignore */ }
-            return defaultContent;
-          })();
-          await supabase
-            .from('site_content')
-            .upsert({ id: 1, content: currentData, updated_at: new Date().toISOString() });
-          setContent(currentData);
-          localStorage.setItem('yasin_content', JSON.stringify(currentData));
-        }
-      } catch (err) {
-        console.warn('Supabase fetch notice:', err);
-      }
-    };
-
-    fetchFromSupabase();
-  }, []);
-
-  const updateContent = async (newContent) => {
+  const updateContent = (newContent) => {
     const merged = { ...content, ...newContent };
     setContent(merged);
-    localStorage.setItem('yasin_content', JSON.stringify(merged));
-
-    if (isSupabaseConfigured && supabase) {
-      try {
-        await supabase
-          .from('site_content')
-          .upsert({ id: 1, content: merged, updated_at: new Date().toISOString() });
-      } catch (err) {
-        console.error('Failed to save to Supabase:', err);
-      }
+    try {
+      localStorage.setItem('yasin_content', JSON.stringify(merged));
+    } catch (err) {
+      console.error('Gagal menyimpan ke localStorage:', err);
     }
   };
 
-  const resetContent = async () => {
-    setContent(defaultContent);
+  const resetContent = () => {
+    setContent(baseContent);
     localStorage.removeItem('yasin_content');
-
-    if (isSupabaseConfigured && supabase) {
-      try {
-        await supabase
-          .from('site_content')
-          .upsert({ id: 1, content: defaultContent, updated_at: new Date().toISOString() });
-      } catch (err) {
-        console.error('Failed to reset Supabase:', err);
-      }
-    }
   };
 
   return (
@@ -195,9 +140,3 @@ export function ContentProvider({ children }) {
     </ContentContext.Provider>
   );
 }
-
-export const useContent = () => {
-  const ctx = useContext(ContentContext);
-  if (!ctx) throw new Error('useContent must be used within ContentProvider');
-  return ctx;
-};

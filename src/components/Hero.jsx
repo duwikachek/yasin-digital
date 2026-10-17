@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { BookOpen, HandHeart } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import { useContent } from '../context/content-context';
 
 export default function Hero() {
   const { content } = useContent();

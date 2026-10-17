@@ -2,7 +2,7 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import InteractiveGallery from "../components/ui/interactive-gallery";
-import { useContent } from "../context/ContentContext";
+import { useContent } from "../context/content-context";
 
 export default function Galeri() {
   const { content } = useContent();

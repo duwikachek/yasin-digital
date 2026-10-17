@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useState } from 'react';
-import { useTheme } from './ThemeProvider';
-import { useContent } from '../context/ContentContext';
+import { useTheme } from './theme-context';
+import { useContent } from '../context/content-context';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);

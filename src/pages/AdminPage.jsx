@@ -1,25 +1,9 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useContent } from '../context/ContentContext';
-import { supabase, isSupabaseConfigured } from '../lib/supabase';
-
-// ───── Upload foto ke Supabase Storage ─────
-async function uploadImageToSupabase(file) {
-  if (!supabase) return null;
-  const ext = file.name.split('.').pop();
-  const fileName = `img_${Date.now()}.${ext}`;
-  const { data, error } = await supabase.storage
-    .from('gallery')
-    .upload(fileName, file, { upsert: true, contentType: file.type });
-  if (error) {
-    console.error('Upload error:', error);
-    return null;
-  }
-  const { data: urlData } = supabase.storage.from('gallery').getPublicUrl(data.path);
-  return urlData?.publicUrl || null;
-}
+import { useContent } from '../context/content-context';
+import { uploadImage, isImageHostingConfigured, imageProviderLabel } from '../lib/imageUpload';
 import {
-  Save, LogOut, Image, Type, LayoutGrid, HelpCircle,
+  Save, LogOut, Type, LayoutGrid, HelpCircle,
   Eye, RotateCcw, ChevronDown, ChevronUp, Plus, Trash2,
   Lock, Upload, CheckCircle, AlertCircle, Download, FileText, Cloud
 } from 'lucide-react';
@@ -30,7 +14,7 @@ const getStoredPassword = () => localStorage.getItem('yasin_admin_password') || 
 const setStoredPassword = (newPass) => localStorage.setItem('yasin_admin_password', newPass);
 
 // ───── Komponen Toast Notifikasi ─────
-function Toast({ message, type, onClose }) {
+function Toast({ message, type }) {
   return (
     <div className={`fixed top-6 right-6 z-[999] flex items-center gap-3 px-5 py-3 rounded-2xl shadow-2xl text-white transition-all ${type === 'success' ? 'bg-emerald-600' : 'bg-red-500'}`}>
       {type === 'success' ? <CheckCircle className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
@@ -148,22 +132,21 @@ function ImageField({ label, value, onChange }) {
     if (!file) return;
     setUploadError('');
 
-    // Jika Supabase tersedia → upload ke Supabase Storage (dapat URL cloud)
-    if (isSupabaseConfigured && supabase) {
+    if (isImageHostingConfigured) {
       setUploading(true);
-      const url = await uploadImageToSupabase(file);
-      setUploading(false);
-      if (url) {
+      try {
+        const url = await uploadImage(file);
+        if (!url) throw new Error('URL gambar kosong');
         onChange(url);
-      } else {
-        setUploadError('Gagal upload ke cloud. Pastikan Supabase Storage bucket "gallery" sudah dibuat dan publik.');
-        // Fallback ke base64
+      } catch (err) {
+        setUploadError(`Gagal upload ke ${imageProviderLabel} (${err.message}). Foto disimpan lokal sebagai base64.`);
         const reader = new FileReader();
         reader.onload = (ev) => onChange(ev.target.result);
         reader.readAsDataURL(file);
+      } finally {
+        setUploading(false);
       }
     } else {
-      // Fallback: simpan sebagai base64 jika tidak ada Supabase
       const reader = new FileReader();
       reader.onload = (ev) => onChange(ev.target.result);
       reader.readAsDataURL(file);
@@ -198,7 +181,7 @@ function ImageField({ label, value, onChange }) {
       {uploading && (
         <p className="text-emerald-400 text-xs mb-2 flex items-center gap-1">
           <span className="inline-block w-3 h-3 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
-          Sedang mengupload foto ke cloud...
+          Sedang mengupload foto ke {imageProviderLabel}...
         </p>
       )}
       {uploadError && (
@@ -284,11 +267,11 @@ export default function AdminPage() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(content, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "yasin_content.json");
+    downloadAnchor.setAttribute("download", "site-content.json");
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    showToast('✅ Data berhasil di-export ke yasin_content.json', 'success');
+    showToast('✅ Konten diunduh sebagai site-content.json', 'success');
   };
 
   const handleCopyJSON = () => {
@@ -337,9 +320,9 @@ export default function AdminPage() {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-white font-semibold">⚙️ Panel Admin</h1>
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium flex items-center gap-1 ${isSupabaseConfigured ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-stone-800 text-stone-400 border border-stone-700'}`}>
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium flex items-center gap-1 ${isImageHostingConfigured ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-stone-800 text-stone-400 border border-stone-700'}`}>
                 <Cloud className="w-3 h-3" />
-                {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
+                {isImageHostingConfigured ? `${imageProviderLabel} aktif` : 'Lokal (base64)'}
               </span>
             </div>
             <p className="text-stone-500 text-xs">Yasin Digital</p>
@@ -555,7 +538,7 @@ export default function AdminPage() {
         {/* ── BACKUP & TRANSFER DATA ── */}
         <SectionCard title="Backup & Transfer Data Antar Perangkat (HP / Laptop)" icon={Download}>
           <p className="text-stone-400 text-sm mb-4">
-            Karena data pengeditan secara default tersimpan di browser perangkat ini (localStorage), Anda dapat meng-export data dari Laptop untuk dimasukkan ke HP atau disalin.
+            Perubahan Anda tersimpan sebagai <span className="text-stone-200">pratinjau lokal</span> di browser ini (localStorage). Agar terlihat oleh <span className="text-emerald-400">semua pengunjung</span>, hasil edit harus dipublikasikan: klik <span className="text-stone-200">Download Backup</span> lalu simpan file tersebut sebagai <code className="text-emerald-400">src/data/site-content.json</code> dan deploy ulang. Gunakan <span className="text-stone-200">Import</span> untuk memindahkan konten ke perangkat lain.
           </p>
           <div className="flex flex-wrap gap-3">
             <button
@@ -563,7 +546,7 @@ export default function AdminPage() {
               className="flex items-center gap-2 px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-emerald-400 border border-stone-700 rounded-xl text-sm font-medium transition-colors"
             >
               <Download className="w-4 h-4" />
-              Download Backup (yasin_content.json)
+              Download Konten (site-content.json)
             </button>
 
             <button

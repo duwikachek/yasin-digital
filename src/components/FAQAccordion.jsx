@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useContent } from '../context/ContentContext';
+import { useContent } from '../context/content-context';
 
 export default function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(null);
