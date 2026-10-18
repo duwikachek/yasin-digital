@@ -12,14 +12,14 @@ const defaultContent = {
     person1: {
       label: "Almarhum",
       name: "alm. Subiyantoro binti Hartono",
-      birthDate: "-",
-      deathDate: "-"
+      birthDate: "01-07-1953",
+      deathDate: "27-05-2026"
     },
     person2: {
       label: "Almarhumah",
       name: "almah. Emah bin Yahya",
-      birthDate: "-",
-      deathDate: "-"
+      birthDate: "21-03-1960",
+      deathDate: "14-07-2026"
     }
   },
   intro: {
