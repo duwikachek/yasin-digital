@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ContentContext } from './content-context';
 import publishedContent from '../data/site-content.json';
 
+// Versi content yang di-publish (dari site-content.json)
+const PUBLISHED_VERSION = publishedContent.version || '1.0.0';
+
 // === DEFAULT CONTENT (fallback jika site-content.json / localStorage kosong) ===
 const defaultContent = {
+  version: '1.0.0',
   hero: {
     siteTitle: "Keluarga Besar Subiyantoro",
     tagline: "Buku Yasin Digital",
@@ -107,6 +111,15 @@ export function ContentProvider({ children }) {
       const saved = localStorage.getItem('yasin_content');
       if (saved) {
         const parsed = JSON.parse(saved);
+        
+        // CEK VERSI: Jika versi localStorage lebih lama dari published version, clear localStorage
+        const savedVersion = parsed.version || '1.0.0';
+        if (savedVersion !== PUBLISHED_VERSION) {
+          console.log(`🔄 Updating content from v${savedVersion} to v${PUBLISHED_VERSION}`);
+          localStorage.removeItem('yasin_content');
+          return baseContent;
+        }
+        
         let gallery = parsed.gallery || baseContent.gallery;
         if (gallery.length < 7) {
           gallery = [...gallery, ...baseContent.gallery.slice(gallery.length)];
@@ -119,8 +132,18 @@ export function ContentProvider({ children }) {
     return baseContent;
   });
 
+  // Effect untuk memantau perubahan versi published content
+  useEffect(() => {
+    const currentVersion = content.version || '1.0.0';
+    if (currentVersion !== PUBLISHED_VERSION) {
+      console.log(`🔄 Auto-updating to latest version: v${PUBLISHED_VERSION}`);
+      setContent(baseContent);
+      localStorage.removeItem('yasin_content');
+    }
+  }, [content.version]);
+
   const updateContent = (newContent) => {
-    const merged = { ...content, ...newContent };
+    const merged = { ...content, ...newContent, version: PUBLISHED_VERSION };
     setContent(merged);
     try {
       localStorage.setItem('yasin_content', JSON.stringify(merged));
