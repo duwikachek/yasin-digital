@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, HandHeart } from 'lucide-react';
+import { BookOpen, HandHeart, Heart } from 'lucide-react';
 import { useContent } from '../context/content-context';
 
 export default function Hero() {
@@ -101,6 +101,13 @@ export default function Hero() {
           >
             <HandHeart className="w-4 h-4 md:w-5 md:h-5 mr-2.5" />
             Doa Tahlil
+          </Link>
+          <Link
+            to="/doa"
+            className="w-full sm:w-auto flex items-center justify-center rounded-full bg-blue-600/90 backdrop-blur-md border border-blue-400/30 px-7 py-3 text-sm md:text-base font-medium text-white shadow-lg hover:bg-blue-500 hover:scale-105 transition-all duration-300"
+          >
+            <Heart className="w-4 h-4 md:w-5 md:h-5 mr-2.5" />
+            Doa-Doa
           </Link>
         </div>
       </div>
