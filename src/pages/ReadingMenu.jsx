@@ -1,7 +1,7 @@
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { BookOpen, BookText } from 'lucide-react';
+import { BookOpen, BookText, HandHeart } from 'lucide-react';
 
 export default function ReadingMenu() {
   return (
@@ -14,7 +14,7 @@ export default function ReadingMenu() {
             <p className="text-lg text-stone-600 dark:text-stone-400 max-w-xl mx-auto">Pilih menu di bawah untuk mulai membaca. Dilengkapi dengan teks Arab, Latin, dan Terjemahan.</p>
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* Card Yasin */}
             <Link to="/yasin" className="group block relative bg-white dark:bg-stone-900 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-stone-800 hover:border-emerald-200 dark:hover:border-emerald-800 overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-[0.02] transform translate-x-4 -translate-y-4 group-hover:scale-110 group-hover:opacity-10 dark:group-hover:opacity-5 transition-all duration-500">
@@ -45,6 +45,23 @@ export default function ReadingMenu() {
                 <p className="text-stone-500 dark:text-stone-400 mb-6 flex-grow">Susunan bacaan dzikir dan doa untuk mendoakan almarhum/almarhumah agar mendapat tempat terbaik.</p>
                 <div className="text-stone-700 dark:text-stone-300 font-medium flex items-center group-hover:text-stone-900 dark:group-hover:text-stone-100">
                   Mulai Membaca <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Card Doa Harian */}
+            <Link to="/doa" className="group block relative bg-white dark:bg-stone-900 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-stone-800 hover:border-blue-200 dark:hover:border-blue-800 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-[0.02] transform translate-x-4 -translate-y-4 group-hover:scale-110 group-hover:opacity-10 dark:group-hover:opacity-5 transition-all duration-500">
+                <HandHeart className="w-48 h-48 dark:text-white" />
+              </div>
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+                  <HandHeart className="w-8 h-8" />
+                </div>
+                <h2 className="text-2xl font-serif font-medium text-stone-900 dark:text-stone-100 mb-2">Doa Harian</h2>
+                <p className="text-stone-500 dark:text-stone-400 mb-6 flex-grow">Kumpulan doa sehari-hari yang sering digunakan dalam aktivitas muslim.</p>
+                <div className="text-blue-600 dark:text-blue-400 font-medium flex items-center group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                  Lihat Doa <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </Link>

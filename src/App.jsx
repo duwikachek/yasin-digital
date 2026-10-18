@@ -5,6 +5,7 @@ import InteractiveFeatures from './pages/InteractiveFeatures';
 import SurahYasin from './pages/SurahYasin';
 import Tahlil from './pages/Tahlil';
 import Galeri from './pages/Galeri';
+import DoaHarian from './pages/DoaHarian';
 import AdminPage from './pages/AdminPage';
 import { ContentProvider } from './context/ContentContext';
 import PwaBanner from './components/PwaBanner';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/bacaan" element={<ReadingMenu />} />
           <Route path="/yasin" element={<SurahYasin />} />
           <Route path="/tahlil" element={<Tahlil />} />
+          <Route path="/doa" element={<DoaHarian />} />
           <Route path="/galeri" element={<Galeri />} />
           <Route path="/interaktif" element={<InteractiveFeatures />} />
           <Route path="/admin" element={<AdminPage />} />

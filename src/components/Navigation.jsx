@@ -14,6 +14,7 @@ export default function Navigation() {
   const links = [
     { name: 'Halaman Depan', path: '/' },
     { name: 'Menu Bacaan', path: '/bacaan' },
+    { name: 'Doa Harian', path: '/doa' },
     { name: 'Fitur Interaktif', path: '/interaktif' },
   ];
 
