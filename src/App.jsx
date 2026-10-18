@@ -7,11 +7,13 @@ import Tahlil from './pages/Tahlil';
 import Galeri from './pages/Galeri';
 import AdminPage from './pages/AdminPage';
 import { ContentProvider } from './context/ContentContext';
+import PwaBanner from './components/PwaBanner';
 
 function App() {
   return (
     <ContentProvider>
       <Router>
+        <PwaBanner />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/bacaan" element={<ReadingMenu />} />

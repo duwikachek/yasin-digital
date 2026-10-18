@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="50%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+
+    <!-- Gold Accent Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <!-- Page Shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Rounded App Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-opacity="0.4" />
+
+  <!-- Subtle Islamic Pattern Ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="8 8" stroke-opacity="0.25" />
+
+  <!-- Center Open Quran Art -->
+  <g filter="url(#shadow)" transform="translate(0, 10)">
+    <!-- Quran Stand (Rehal) Base -->
+    <path d="M196 360 L256 320 L316 360 L336 348 L256 295 L176 348 Z" fill="url(#goldGrad)" opacity="0.9" />
+
+    <!-- Left Page Base -->
+    <path d="M256 300 C210 285 160 280 100 290 L100 170 C160 160 210 165 256 180 Z" fill="#f8fafc" />
+    <!-- Left Page Gradient Overlay -->
+    <path d="M256 300 C210 285 160 280 100 290 L100 170 C160 160 210 165 256 180 Z" fill="#e2e8f0" opacity="0.3" />
+
+    <!-- Right Page Base -->
+    <path d="M256 300 C302 285 352 280 412 290 L412 170 C352 160 302 165 256 180 Z" fill="#ffffff" />
+    <!-- Right Page Gradient Overlay -->
+    <path d="M256 300 C302 285 352 280 412 290 L412 170 C352 160 302 165 256 180 Z" fill="#f1f5f9" opacity="0.4" />
+
+    <!-- Page Borders (Gold Trim) -->
+    <path d="M100 290 L100 170 C160 160 210 165 256 180 C302 165 352 160 412 170 L412 290 C352 280 302 285 256 300 C210 285 160 280 100 290 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4" />
+
+    <!-- Book Spine Center Fold -->
+    <line x1="256" y1="180" x2="256" y2="300" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Left Page Arabic Lines Suggestion -->
+    <line x1="130" y1="200" x2="230" y2="204" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="126" y1="222" x2="234" y2="226" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="124" y1="244" x2="234" y2="248" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="130" y1="266" x2="220" y2="270" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Right Page Arabic Lines Suggestion -->
+    <line x1="282" y1="204" x2="382" y2="200" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="278" y1="226" x2="386" y2="222" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="278" y1="248" x2="388" y2="244" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <line x1="292" y1="270" x2="382" y2="266" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Center Bookmark Ribbon (Green & Gold) -->
+    <path d="M256 180 C256 240 264 280 270 330 L256 318 L242 330 C248 280 256 240 256 180 Z" fill="url(#goldGrad)" />
+  </g>
+
+  <!-- Crescent & Star Emblem Above Quran -->
+  <g transform="translate(256, 110)">
+    <path d="M -2 -24 A 20 20 0 1 0 22 10 A 16 16 0 1 1 -2 -24 Z" fill="url(#goldGrad)" />
+    <!-- 8-Point Star -->
+    <polygon points="14,-14 18,-11 23,-11 20,-7 22,-2 17,-4 14,-1 13,-6 8,-8 13,-10" fill="url(#goldGrad)" />
+  </g>
+</svg>

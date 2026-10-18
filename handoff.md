@@ -102,6 +102,6 @@ npm run dev
 ## 📋 Rekomendasi Pengembangan Lanjutan (Roadmap)
 
 - [ ] **Migrasi Gambar dari Base64 ke Cloud / Aset Publik:** Mengganti foto Base64 di `site-content.json` dengan URL Cloudinary atau file webp di `public/` agar ukuran bundle berkurang drastis.
-- [ ] **PWA (Progressive Web App):** Menambahkan `manifest.json` dan service worker agar ayat Yasin dan Tahlil dapat diakses 100% tanpa kuota internet (*offline mode*).
+- [x] **PWA (Progressive Web App):** Dilengkapi `manifest.webmanifest`, service worker offline precaching, ikon aplikasi 192x192 & 512x512, dan offline detection banner. Website dapat di-install ke HP dan dibuka 100% offline.
 - [x] **Audio Murottal & Font Al-Qur'an Standar:** Integrasi pemutar audio per ayat & full surah, font mushaf resmi (Amiri Quran/Scheherazade New), dan dataset Surat Yasin bersih (Kemenag & Rasm Utsmani).
 - [ ] **Buku Tamu / Doa Digital:** Penambahan kolom bagi kerabat untuk mengirimkan untaian doa dan ucapan belasungkawa.
