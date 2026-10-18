@@ -58,8 +58,8 @@ export default function ReadingMenu() {
                 <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
                   <HandHeart className="w-8 h-8" />
                 </div>
-                <h2 className="text-2xl font-serif font-medium text-stone-900 dark:text-stone-100 mb-2">Doa Harian</h2>
-                <p className="text-stone-500 dark:text-stone-400 mb-6 flex-grow">Kumpulan doa sehari-hari yang sering digunakan dalam aktivitas muslim.</p>
+                <h2 className="text-2xl font-serif font-medium text-stone-900 dark:text-stone-100 mb-2">Doa-Doa</h2>
+                <p className="text-stone-500 dark:text-stone-400 mb-6 flex-grow">Kumpulan doa pilihan yang sering digunakan dalam kehidupan sehari-hari.</p>
                 <div className="text-blue-600 dark:text-blue-400 font-medium flex items-center group-hover:text-blue-700 dark:group-hover:text-blue-300">
                   Lihat Doa <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                 </div>

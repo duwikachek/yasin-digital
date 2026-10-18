@@ -413,6 +413,59 @@
           "notes": "Dibacakan untuk bayi yang baru lahir"
         }
       ]
+    },
+    {
+      "id": "doa-ziarah",
+      "name": "Doa Ziarah Kubur",
+      "icon": "landmark",
+      "description": "Doa ketika berziarah ke makam",
+      "color": "slate",
+      "prayers": [
+        {
+          "id": "masuk-kuburan",
+          "title": "Doa Masuk Kuburan",
+          "arabic": "السَّلاَمُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِيْنَ وَالْمُسْلِمِيْنَ وَإِنَّا إِنْ شَاءَ اللهُ بِكُمْ لاَحِقُوْنَ، نَسْأَلُ اللهَ لَنَا وَلَكُمُ الْعَافِيَةَ",
+          "latin": "Assalamu 'alaikum ahlad diyari minal mu'minina wal muslimin wa inna insya Allahu bikum lahiqun, nas-alullaha lana wa lakumul 'afiyah",
+          "translation": "Semoga keselamatan tercurah kepada kalian wahai penghuni kubur dari kaum mukminin dan muslimin. Sesungguhnya kami insya Allah akan menyusul kalian. Kami memohon kepada Allah untuk kami dan kalian semua keselamatan",
+          "source": "HR. Muslim",
+          "notes": "Dibaca ketika memasuki area pemakaman"
+        },
+        {
+          "id": "ziarah-kubur",
+          "title": "Doa Ziarah Kubur",
+          "arabic": "اَلسَّلاَمُ عَلَيْكُمْ دَارَ قَوْمٍ مُؤْمِنِيْنَ، وَأَتَاكُمْ مَا تُوْعَدُوْنَ غَدًا مُؤَجَّلُوْنَ، وَإِنَّا إِنْ شَاءَ اللهُ بِكُمْ لاَحِقُوْنَ. اَللّٰهُمَّ اغْفِرْ لأَهْلِ بَقِيْعِ الْغَرْقَدِ",
+          "latin": "Assalamu 'alaikum dara qaumin mu'minin, wa atakum ma tu'aduna ghadan mu-ajjalun, wa inna insya Allahu bikum lahiqun. Allahummagh-fir li ahli baqi'il gharqad",
+          "translation": "Keselamatan atas kalian wahai penghuni negeri kaum mukminin. Telah datang kepada kalian apa yang telah dijanjikan untuk besok yang ditangguhkan. Sesungguhnya kami insya Allah akan menyusul kalian. Ya Allah ampunilah penghuni Baqi' al-Gharqad",
+          "source": "HR. Muslim"
+        },
+        {
+          "id": "mendoakan-mayit",
+          "title": "Doa Mendoakan Mayit di Kuburan",
+          "arabic": "اَللّٰهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ وَأَكْرِمْ نُزُلَهُ وَوَسِّعْ مُدْخَلَهُ وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ اْلأَبْيَضَ مِنَ الدَّنَسِ",
+          "latin": "Allahummagh-fir lahu warhamhu wa 'afihi wa'fu 'anhu wa akrim nuzulahu wa wassi' mud-khalahu waghsilhu bil ma'i wats tsalji wal baradi wa naqqihi minal khathaya kama naqqaitats tsaubal abyada minad danas",
+          "translation": "Ya Allah, ampunilah dia, rahmatilah dia, berilah kesehatan dan maafkanlah dia. Muliakanlah tempat tinggalnya, lapangkanlah kuburnya, mandikanlah dia dengan air, salju dan embun. Bersihkanlah dia dari kesalahan-kesalahan sebagaimana Engkau bersihkan pakaian putih dari kotoran",
+          "source": "HR. Muslim",
+          "notes": "Sesuaikan dengan jenis kelamin: lahu (laki-laki), laha (perempuan)"
+        },
+        {
+          "id": "talqin-mayit",
+          "title": "Doa Talqin Mayit",
+          "arabic": "يَا فُلاَنَ بْنَ فُلاَنَةَ (atau فُلاَنَةَ بِنْتَ فُلاَنَةَ) اُذْكُرِ الْعَهْدَ الَّذِيْ خَرَجْتَ عَلَيْهِ مِنَ الدُّنْيَا: شَهَادَةَ أَنْ لاَ إِلٰهَ إِلاَّ اللهُ وَأَنَّ مُحَمَّدًا رَسُوْلُ اللهِ، وَأَنَّكَ رَضِيْتَ بِاللهِ رَبًّا، وَبِاْلإِسْلاَمِ دِيْنًا، وَبِمُحَمَّدٍ نَبِيًّا، وَبِالْقُرْآنِ إِمَامًا، وَبِالْكَعْبَةِ قِبْلَةً، وَبِالْمُؤْمِنِيْنَ إِخْوَانًا",
+          "latin": "Ya fulan ibna fulanah (atau fulanah binta fulanah) udzkuril 'ahdal ladzi kharajta 'alaihi minad dunya: syahadatan an la ilaha illallahu wa anna Muhammadan rasulullah, wa annaka radhita billahi rabban wa bil islami dinan wa bi Muhammadin nabiyyan wa bil Qur'ani imaman wa bil Ka'bati qiblatan wa bil mu'minina ikhwanan",
+          "translation": "Wahai fulan anak fulanah (sebutkan nama mayit dan ibunya), ingatlah janji yang kamu bawa ketika keluar dari dunia: Kesaksian bahwa tidak ada tuhan selain Allah dan Muhammad adalah utusan Allah, dan sesungguhnya kamu ridha dengan Allah sebagai Tuhan, Islam sebagai agama, Muhammad sebagai Nabi, Al-Qur'an sebagai imam, Ka'bah sebagai kiblat, dan kaum mukminin sebagai saudara",
+          "source": "Tradisi Ulama",
+          "notes": "Ganti 'fulan ibna fulanah' dengan nama mayit dan ibunya. Untuk perempuan gunakan 'fulanah binta fulanah'"
+        },
+        {
+          "id": "doa-berziarah",
+          "title": "Doa Ketika Berziarah",
+          "arabic": "اَللّٰهُمَّ إِنَّ فُلاَنًا (atau فُلاَنَةَ) فِيْ ذِمَّتِكَ وَحَبْلِ جِوَارِكَ، فَقِهِ مِنْ فِتْنَةِ الْقَبْرِ وَعَذَابِ النَّارِ، وَأَنْتَ أَهْلُ الْوَفَاءِ وَالْحَمْدِ، اَللّٰهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ إِنَّكَ أَنْتَ الْغَفُوْرُ الرَّحِيْمُ",
+          "latin": "Allahumma inna fulanan (atau fulanah) fi dzimmatika wa habli jiwarik, faqihi min fitnatil qabri wa 'adzabin nar, wa anta ahlul wafa'i wal hamdi. Allahummagh-fir lahu warhamhu innaka antal ghafurur rahim",
+          "translation": "Ya Allah, sesungguhnya fulan (sebutkan nama) dalam tanggungan-Mu dan dalam ikatan perlindungan-Mu. Maka peliharalah dia dari fitnah kubur dan azab neraka. Engkau adalah Dzat yang memiliki kesetiaan dan pujian. Ya Allah ampunilah dia dan rahmatilah dia. Sesungguhnya Engkau Maha Pengampun lagi Maha Penyayang",
+          "source": "HR. Abu Dawud & Ibnu Majah",
+          "notes": "Sebutkan nama orang yang diziarahi"
+        }
+      ]
     }
   ]
 }

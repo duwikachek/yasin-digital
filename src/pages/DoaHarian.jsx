@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, Copy, Check, Sun, UtensilsCrossed, Church, Car, Shield, Briefcase, Users } from 'lucide-react';
+import { ChevronDown, ChevronUp, Copy, Check, Sun, UtensilsCrossed, Church, Car, Shield, Briefcase, Users, Landmark } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import doaData from '../data/doa-harian.json';
@@ -12,6 +12,7 @@ const iconMap = {
   shield: Shield,
   briefcase: Briefcase,
   users: Users,
+  landmark: Landmark,
 };
 
 const colorMap = {
@@ -22,6 +23,7 @@ const colorMap = {
   red: 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800',
   indigo: 'bg-indigo-50 dark:bg-indigo-950/30 border-indigo-200 dark:border-indigo-800',
   pink: 'bg-pink-50 dark:bg-pink-950/30 border-pink-200 dark:border-pink-800',
+  slate: 'bg-slate-50 dark:bg-slate-950/30 border-slate-200 dark:border-slate-800',
 };
 
 const iconColorMap = {
@@ -32,6 +34,7 @@ const iconColorMap = {
   red: 'text-red-600 dark:text-red-400',
   indigo: 'text-indigo-600 dark:text-indigo-400',
   pink: 'text-pink-600 dark:text-pink-400',
+  slate: 'text-slate-600 dark:text-slate-400',
 };
 
 function DoaCard({ prayer, categoryColor }) {
@@ -210,10 +213,10 @@ export default function DoaHarian() {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-3">
-              Doa Harian
+              Doa-Doa
             </h1>
             <p className="text-stone-600 dark:text-stone-400 max-w-2xl mx-auto">
-              Kumpulan doa sehari-hari yang sering digunakan dalam aktivitas muslim
+              Kumpulan doa pilihan yang sering digunakan dalam kehidupan sehari-hari
             </p>
             <p className="text-xs text-stone-500 dark:text-stone-500 mt-2">
               Total {doaData.categories.reduce((sum, cat) => sum + cat.prayers.length, 0)} doa dalam {doaData.categories.length} kategori
