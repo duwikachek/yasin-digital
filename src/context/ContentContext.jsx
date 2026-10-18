@@ -30,7 +30,7 @@ const defaultContent = {
     title: "Kata Pengantar",
     paragraphs: [
       "Assalamualaikum Warahmatullahi Wabarakatuh. Puji syukur ke hadirat Allah SWT.",
-      "Aplikasi web ini dibuat sebagai bentuk dedikasi dan cinta kepada alm. SUBIYANTORO.",
+      "Aplikasi web ini dibuat sebagai bentuk dedikasi dan cinta kepada alm. SUBIYANTORO & almah. EMAH.",
       "Semoga dengan adanya bacaan Yasin dan Tahlil ini, pahala senantiasa mengalir untuk beliau, dan kita semua diberikan keberkahan. Amin."
     ]
   },
